@@ -2,6 +2,7 @@ import { useState } from "react";
 import isLeapYear from "../../functions/isLeapYear";
 import {
   Button,
+  Button2,
   Container,
   Content,
   Input,
@@ -19,10 +20,18 @@ function Calculator() {
   const [justifiedAbsence, setJustifiedAbsence] = useState(0);
   const [leaveHealth, setLeaveHealth] = useState(0);
   const [leaveHealthFamily, setLeaveHealthFamily] = useState(0);
+  const [stopedPeriod, setStopedPeriod] = useState(0);
 
-  const stopedPeriod = 583;
   const fiveYears = 1825;
   const oneDayInMiliseconds = 60 * 60 * 1000 * 24;
+
+  function updateStopedPeriod() {
+    if (stopedPeriod === 0) {
+      setStopedPeriod(583);
+    } else {
+      setStopedPeriod(0);
+    }
+  }
 
   function calcDate() {
     const year = firstDate.slice(6, 10);
@@ -140,6 +149,9 @@ function Calculator() {
 
           <View>
             <Button onClick={calcDate}>CALCULAR</Button>
+            <Button2 onClick={updateStopedPeriod}>
+              {stopedPeriod === 0 ? "ADICIONAR" : "REMOVER"} 583
+            </Button2>
           </View>
 
           <View>

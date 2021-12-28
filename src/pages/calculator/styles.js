@@ -38,6 +38,7 @@ export const Response = styled.span`
 
 export const View = styled.div`
   display: flex;
+  flex-direction: row;
   justify-content: center;
   margin-top: 40px;
 `;
@@ -93,4 +94,21 @@ export const Button = styled.button`
 
   align-items: center;
   justify-content: center;
+`;
+
+export const Button2 = styled.button`
+  width: 12rem;
+  height: 2.6rem;
+
+  margin-left: 2rem;
+
+  border: 0;
+  border-radius: 2rem;
+  cursor: pointer;
+
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: white;
+
+  background-color: green;
 `;
