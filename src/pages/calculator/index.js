@@ -16,7 +16,9 @@ function Calculator() {
   const [lastDate, setLastDate] = useState(null);
   const [bissexto, setBissexto] = useState(0);
   const [unjustifiedAbsence, setUnjustifiedAbsence] = useState(0);
+  const [justifiedAbsence, setJustifiedAbsence] = useState(0);
   const [leaveHealth, setLeaveHealth] = useState(0);
+  const [leaveHealthFamily, setLeaveHealthFamily] = useState(0);
 
   const stopedPeriod = 583;
   const fiveYears = 1825;
@@ -34,7 +36,9 @@ function Calculator() {
     const discount =
       Number(fiveYears) +
       Number(unjustifiedAbsence) +
+      Number(justifiedAbsence) +
       Number(leaveHealth) +
+      Number(leaveHealthFamily) +
       Number(stopedPeriod);
 
     const dateLast = new Date(time + oneDayInMiliseconds * discount - 1);
@@ -106,7 +110,7 @@ function Calculator() {
               </Subtitle>
               <InputSquare
                 placeholder="0"
-                onChange={(text) => setUnjustifiedAbsence(text.target.value)}
+                onChange={(text) => setJustifiedAbsence(text.target.value)}
               />
             </div>
             <div>
@@ -129,7 +133,7 @@ function Calculator() {
               <Subtitle>Licença saúde (família)</Subtitle>
               <InputSquare
                 placeholder="0"
-                onChange={(text) => setLeaveHealth(text.target.value)}
+                onChange={(text) => setLeaveHealthFamily(text.target.value)}
               />
             </div>
           </div>
