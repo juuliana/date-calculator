@@ -39,8 +39,10 @@ function Calculator() {
     const day = firstDate.slice(0, 2);
 
     const hour = new Date().toLocaleTimeString("pt-br");
-    const date = new Date(`${day} ${month} ${year} ${hour}`);
-    const time = date.getTime();
+
+    const newDate = new Date(Date.parse(`${month} ${day} ${year} ${hour}`));
+
+    const time = newDate.getTime();
 
     const discount =
       Number(fiveYears) +
@@ -50,11 +52,9 @@ function Calculator() {
       Number(leaveHealthFamily) +
       Number(stopedPeriod);
 
-    const dateLast = new Date(
-      Number(time + oneDayInMiliseconds * (discount || 0) - 1)
-    );
+    const dateLast = new Date(time + oneDayInMiliseconds * (discount || 0) - 1);
 
-    verifyLeapYear(dateLast, date);
+    verifyLeapYear(dateLast, newDate);
   }
 
   function verifyLeapYear(dateLast, formattedDate) {
