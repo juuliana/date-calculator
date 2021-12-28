@@ -50,7 +50,9 @@ function Calculator() {
       Number(leaveHealthFamily) +
       Number(stopedPeriod);
 
-    const dateLast = new Date(time + oneDayInMiliseconds * discount - 1);
+    const dateLast = new Date(
+      Number(time + oneDayInMiliseconds * (discount || 0) - 1)
+    );
 
     verifyLeapYear(dateLast, date);
   }
