@@ -150,9 +150,27 @@ function Calculator() {
           </div>
 
           <View>
-            <Button onClick={calcDate}>CALCULAR</Button>
+            <Button
+              onClick={calcDate}
+              disabled={!firstDate}
+              style={
+                firstDate
+                  ? { backgroundColor: "black" }
+                  : {
+                      backgroundColor: "#00000050",
+                    }
+              }
+            >
+              CALCULAR
+            </Button>
             <Button2 onClick={updateStopedPeriod}>
               {stopedPeriod === 0 ? "ADICIONAR" : "REMOVER"} 583
+            </Button2>
+            <Button2
+              onClick={() => window.location.reload(true)}
+              style={{ backgroundColor: "red" }}
+            >
+              LIMPAR
             </Button2>
           </View>
 
