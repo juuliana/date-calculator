@@ -85,7 +85,7 @@ function Calculator() {
       }
     }
 
-    const date = new Date(dateLast + bissexto - 1)
+    const date = new Date(dateLast + bissexto)
       .toJSON()
       .slice(0, 10)
       .split("-")
