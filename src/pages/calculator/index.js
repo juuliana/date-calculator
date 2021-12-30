@@ -39,25 +39,33 @@ function Calculator() {
     const day = firstDate.slice(0, 2);
 
     const hour = new Date().toLocaleTimeString("pt-br");
-
     const newDate = new Date(Date.parse(`${month} ${day} ${year} ${hour}`));
 
-    const time = newDate.getTime();
-
     const discount =
-      Number(fiveYears) +
+      Number(fiveYears - 2) +
       Number(unjustifiedAbsence) +
       Number(justifiedAbsence) +
       Number(leaveHealth) +
       Number(leaveHealthFamily) +
       Number(stopedPeriod);
 
-    const dateLast = new Date(time + oneDayInMiliseconds * (discount || 0) - 1);
+    const dateLast = new Date(
+      newDate.getTime() + oneDayInMiliseconds * (discount || 0)
+    );
 
-    verifyLeapYear(dateLast, newDate);
+    const dateLastFormatted = new Date(dateLast)
+      .toJSON()
+      .slice(0, 10)
+      .split("-")
+      .reverse()
+      .join("/");
+
+    const lastMonth = dateLastFormatted.slice(3, 5);
+
+    verifyLeapYear(dateLast, newDate, month, lastMonth);
   }
 
-  function verifyLeapYear(dateLast, formattedDate) {
+  function verifyLeapYear(dateLast, formattedDate, month, lastMonth) {
     const firstYear = formattedDate.getFullYear();
     const lastYear = dateLast.getFullYear();
 
@@ -65,22 +73,19 @@ function Calculator() {
       const leapYear = isLeapYear(year);
 
       if (year === firstYear && leapYear) {
-        const firstMonth = formattedDate.getMonth();
-
-        if (firstMonth < 3) {
+        if (month < 3) {
           setBissexto(bissexto + 1);
         }
       }
 
       if (year === lastYear && leapYear) {
-        const lastMonth = formattedDate.getMonth();
-
         if (lastMonth < 3) {
           setBissexto(bissexto + 1);
         }
       }
 
       if (year !== firstYear && year !== lastYear && leapYear) {
+        console.log("aiquix");
         setBissexto(bissexto + 1);
       }
     }
