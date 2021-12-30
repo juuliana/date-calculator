@@ -85,7 +85,6 @@ function Calculator() {
       }
 
       if (year !== firstYear && year !== lastYear && leapYear) {
-        console.log("aiquix");
         setBissexto(bissexto + 1);
       }
     }
