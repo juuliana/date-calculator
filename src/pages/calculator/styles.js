@@ -59,6 +59,20 @@ export const Input = styled.input`
   font-weight: 400;
 `;
 
+export const InputDate = styled.input`
+  display: flex;
+  width: 98%;
+  height: 1.8rem;
+  margin-bottom: 1.5rem;
+  padding-left: 0.7rem;
+
+  border: 0.5px;
+  border-radius: 3px;
+
+  font-size: 0.9rem;
+  font-weight: 400;
+`;
+
 export const InputSquare = styled.input`
   display: flex;
   flex-direction: column;

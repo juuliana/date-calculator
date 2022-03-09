@@ -1,4 +1,5 @@
 import { useState } from "react";
+import dateToBR from "../../functions/dateToBR";
 import isLeapYear from "../../functions/isLeapYear";
 import {
   Button,
@@ -6,6 +7,7 @@ import {
   Container,
   Content,
   Input,
+  InputDate,
   InputSquare,
   Response,
   Subtitle,
@@ -20,34 +22,36 @@ function Calculator() {
   const [justifiedAbsence, setJustifiedAbsence] = useState(0);
   const [leaveHealth, setLeaveHealth] = useState(0);
   const [leaveHealthFamily, setLeaveHealthFamily] = useState(0);
-  const [stopedPeriod, setStopedPeriod] = useState(0);
+  // const [stopedPeriod, setStopedPeriod] = useState(0);
 
   const fiveYears = 1825;
   const oneDayInMiliseconds = 60 * 60 * 1000 * 24;
 
-  function updateStopedPeriod() {
-    if (stopedPeriod === 0) {
-      setStopedPeriod(583);
-    } else {
-      setStopedPeriod(0);
-    }
-  }
+  // function updateStopedPeriod() {
+  //   if (stopedPeriod === 0) {
+  //     setStopedPeriod(583);
+  //   } else {
+  //     setStopedPeriod(0);
+  //   }
+  // }
 
   function calcDate() {
-    const year = firstDate.slice(6, 10);
-    const month = firstDate.slice(3, 5);
-    const day = firstDate.slice(0, 2);
+    const firstDateBR = dateToBR(firstDate);
+
+    const year = firstDateBR.slice(6, 10);
+    const month = firstDateBR.slice(3, 5);
+    const day = firstDateBR.slice(0, 2);
 
     const hour = new Date().toLocaleTimeString("pt-br");
     const newDate = new Date(Date.parse(`${month} ${day} ${year} ${hour}`));
 
     const discount =
-      Number(fiveYears - 2) +
+      Number(fiveYears - 1) +
       Number(unjustifiedAbsence) +
       Number(justifiedAbsence) +
       Number(leaveHealth) +
-      Number(leaveHealthFamily) +
-      Number(stopedPeriod);
+      Number(leaveHealthFamily);
+    // + Number(stopedPeriod);
 
     const dateLast = new Date(
       newDate.getTime() + oneDayInMiliseconds * (discount || 0)
@@ -74,17 +78,20 @@ function Calculator() {
 
       if (year === firstYear && leapYear) {
         if (month < 3) {
+          console.log(year, "aaaaa");
           setBissexto(bissexto + 1);
         }
       }
 
       if (year === lastYear && leapYear) {
         if (lastMonth < 3) {
+          console.log(year, "bbbb");
           setBissexto(bissexto + 1);
         }
       }
 
       if (year !== firstYear && year !== lastYear && leapYear) {
+        console.log(year, "cccc");
         setBissexto(bissexto + 1);
       }
     }
@@ -107,7 +114,8 @@ function Calculator() {
           <Input />
 
           <Subtitle>Data inicial</Subtitle>
-          <Input
+          <InputDate
+            type="date"
             placeholder="Ex: 27/12/2021"
             onChange={(text) => setFirstDate(text.target.value)}
           />
@@ -154,22 +162,12 @@ function Calculator() {
           </div>
 
           <View>
-            <Button
-              onClick={calcDate}
-              disabled={!firstDate}
-              style={
-                firstDate
-                  ? { backgroundColor: "black" }
-                  : {
-                      backgroundColor: "#00000050",
-                    }
-              }
-            >
-              CALCULAR
-            </Button>
-            <Button2 onClick={updateStopedPeriod}>
+            {firstDate && <Button onClick={calcDate}>CALCULAR</Button>}
+
+            {/* <Button2 onClick={updateStopedPeriod}>
               {stopedPeriod === 0 ? "ADICIONAR" : "REMOVER"} 583
-            </Button2>
+            </Button2> */}
+
             <Button2
               onClick={() => window.location.reload(true)}
               style={{ backgroundColor: "red" }}
@@ -179,7 +177,9 @@ function Calculator() {
           </View>
 
           <View>
-            {lastDate && <Response>A data final será: {lastDate}</Response>}
+            {firstDate && lastDate && (
+              <Response>A data final será: {lastDate}</Response>
+            )}
           </View>
         </main>
       </Content>
