@@ -1,128 +1,147 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: black;
   display: flex;
   flex-direction: column;
 
-  margin: 2rem 15rem;
+  margin: 3rem 15rem;
   border-radius: 20px;
-  height: 90vh;
+  height: 85vh;
+`;
 
-  font-family: "Montserrat", Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-    Helvetica Neue, sans-serif;
+export const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  height: 130px;
+  margin-bottom: 30px;
+`;
+
+export const Main = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+`;
+
+export const Spacer = styled.span`
+  width: 5;
+  background-color: white;
+`;
+
+export const Subtitle = styled.span`
+  color: white;
+  font-size: 1rem;
+`;
+
+export const Title = styled.span`
+  color: white;
+  font-size: 1rem;
+`;
+
+export const Response = styled.span`
+  font-size: 1.5rem;
+`;
+
+export const View = styled.div`
+  justify-content: center;
+  margin-left: 25%;
+  height: 130px;
 `;
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-
-  padding: 2rem;
-
-  margin: 0.5rem;
-  height: 90vh;
-  border-radius: 15px;
-
-  background-color: #c0c0c0;
+  align-items: center;
 `;
 
-export const Subtitle = styled.span`
-  font-size: 0.9rem;
-  font-weight: 600;
-`;
-
-export const Response = styled.span`
-  font-size: 1rem;
-  font-weight: 700;
-`;
-
-export const View = styled.div`
+export const SquareView = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-top: 40px;
-`;
-
-export const Input = styled.input`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 98%;
-  height: 1.8rem;
-  margin-bottom: 1.5rem;
-  padding-left: 0.7rem;
-
-  border: 0.5px;
-  border-radius: 3px;
-
-  font-size: 0.9rem;
-  font-weight: 400;
+  margin-top: 20px;
 `;
 
 export const InputDate = styled.input`
   display: flex;
-  width: 98%;
-  height: 1.8rem;
-  margin-bottom: 1.5rem;
-  padding-left: 0.7rem;
+  align-self: center;
 
-  border: 0.5px;
-  border-radius: 3px;
+  width: 21rem;
+  height: 3.5rem;
 
-  font-size: 0.9rem;
-  font-weight: 400;
+  margin: 0.5rem 0 5rem 0;
+  padding: 2rem;
+
+  font-size: 2rem;
+`;
+
+export const SquareContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const InputSquare = styled.input`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 70%;
-  height: 5rem;
-  margin-bottom: 1.5rem;
-  margin-right: 1.1rem;
-  padding: 0.6rem;
+  width: 5rem;
+  height: 4.5rem;
+  margin: 0 2rem 0.5rem 2rem;
 
-  border: 0px;
-  border-radius: 3px;
+  padding: 0.6rem;
 
   text-align: center;
   font-size: 2rem;
 `;
 
 export const Button = styled.button`
-  background-color: black;
-  color: white;
+  background-color: #469be9;
+  position: absolute;
 
-  font-weight: 700;
-  font-size: 0.75rem;
-
-  border: none;
-  border-radius: 3.125rem;
-
-  width: 13rem;
-  height: 2.6rem;
+  width: 15rem;
+  height: 4.5rem;
   padding: 0 1rem;
-
-  cursor: pointer;
 
   align-items: center;
   justify-content: center;
+
+  :disabled {
+    background-color: #293237;
+  }
+
+  :hover {
+    width: 15.5rem;
+    height: 5rem;
+  }
+`;
+
+export const Result = styled.div`
+  display: flex;
+  position: relative;
+  justify-content: center;
+
+  width: 25rem;
+  height: 7rem;
+  padding-top: 3.5rem;
+
+  margin-top: 2.25rem;
+  border-radius: 20px;
+  background-color: white;
+
+  animation: hover 0.9s forwards;
 `;
 
 export const Button2 = styled.button`
-  width: 12rem;
-  height: 2.6rem;
+  width: 3.2rem;
+  height: 3.2rem;
 
-  margin-left: 2rem;
+  background-color: #e77d7d;
 
-  border: 0;
-  border-radius: 2rem;
-  cursor: pointer;
-
-  font-weight: 700;
-  font-size: 0.8rem;
-  color: white;
-
-  background-color: green;
+  :hover {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
 `;

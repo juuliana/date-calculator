@@ -6,11 +6,18 @@ import {
   Button2,
   Container,
   Content,
-  Input,
+  Footer,
+  Header,
   InputDate,
   InputSquare,
+  Main,
   Response,
+  Result,
+  Spacer,
+  SquareContainer,
+  SquareView,
   Subtitle,
+  Title,
   View,
 } from "./styles";
 
@@ -22,18 +29,9 @@ function Calculator() {
   const [justifiedAbsence, setJustifiedAbsence] = useState(0);
   const [leaveHealth, setLeaveHealth] = useState(0);
   const [leaveHealthFamily, setLeaveHealthFamily] = useState(0);
-  // const [stopedPeriod, setStopedPeriod] = useState(0);
 
   const fiveYears = 1825;
   const oneDayInMiliseconds = 60 * 60 * 1000 * 24;
-
-  // function updateStopedPeriod() {
-  //   if (stopedPeriod === 0) {
-  //     setStopedPeriod(583);
-  //   } else {
-  //     setStopedPeriod(0);
-  //   }
-  // }
 
   function calcDate() {
     const firstDateBR = dateToBR(firstDate);
@@ -51,7 +49,6 @@ function Calculator() {
       Number(justifiedAbsence) +
       Number(leaveHealth) +
       Number(leaveHealthFamily);
-    // + Number(stopedPeriod);
 
     const dateLast = new Date(
       newDate.getTime() + oneDayInMiliseconds * (discount || 0)
@@ -78,20 +75,17 @@ function Calculator() {
 
       if (year === firstYear && leapYear) {
         if (month < 3) {
-          console.log(year, "aaaaa");
           setBissexto(bissexto + 1);
         }
       }
 
       if (year === lastYear && leapYear) {
         if (lastMonth < 3) {
-          console.log(year, "bbbb");
           setBissexto(bissexto + 1);
         }
       }
 
       if (year !== firstYear && year !== lastYear && leapYear) {
-        console.log(year, "cccc");
         setBissexto(bissexto + 1);
       }
     }
@@ -108,81 +102,73 @@ function Calculator() {
 
   return (
     <Container>
-      <Content>
-        <main>
-          <Subtitle>Nome da pessoa</Subtitle>
-          <Input />
+      <Header>
+        <Button2 onClick={() => window.location.reload(true)}>X</Button2>
 
+        <View>
           <Subtitle>Data inicial</Subtitle>
           <InputDate
             type="date"
-            placeholder="Ex: 27/12/2021"
             onChange={(text) => setFirstDate(text.target.value)}
           />
+        </View>
+      </Header>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              marginLeft: 30,
-            }}
-          >
-            <div>
-              <Subtitle style={{ marginLeft: 13 }}>
-                Faltas justificadas
-              </Subtitle>
+      <Main>
+        <Content>
+          <Title>Faltas</Title>
+          <SquareView>
+            <SquareContainer>
               <InputSquare
                 placeholder="0"
                 onChange={(text) => setJustifiedAbsence(text.target.value)}
               />
-            </div>
-            <div>
-              <Subtitle style={{ marginLeft: 7 }}>
-                Faltas injustificadas
-              </Subtitle>
+              <Subtitle>Justificadas</Subtitle>
+            </SquareContainer>
+            <SquareContainer>
               <InputSquare
                 placeholder="0"
                 onChange={(text) => setUnjustifiedAbsence(text.target.value)}
               />
-            </div>
-            <div>
-              <Subtitle style={{ marginLeft: 24 }}>Licença Saúde</Subtitle>
+              <Subtitle>Injustificadas</Subtitle>
+            </SquareContainer>
+          </SquareView>
+        </Content>
+
+        <Spacer />
+
+        <Content>
+          <Title>Licenças saúde</Title>
+          <SquareView>
+            <SquareContainer>
               <InputSquare
                 placeholder="0"
                 onChange={(text) => setLeaveHealth(text.target.value)}
               />
-            </div>
-            <div>
-              <Subtitle>Licença saúde (família)</Subtitle>
+              <Subtitle>Pessoal</Subtitle>
+            </SquareContainer>
+            <SquareContainer>
               <InputSquare
                 placeholder="0"
                 onChange={(text) => setLeaveHealthFamily(text.target.value)}
               />
-            </div>
-          </div>
+              <Subtitle>Família</Subtitle>
+            </SquareContainer>
+          </SquareView>
+        </Content>
+      </Main>
 
-          <View>
-            {firstDate && <Button onClick={calcDate}>CALCULAR</Button>}
+      <Footer>
+        {firstDate && lastDate && (
+          <Result>
+            <Response>Data final: {lastDate}</Response>
+          </Result>
+        )}
 
-            {/* <Button2 onClick={updateStopedPeriod}>
-              {stopedPeriod === 0 ? "ADICIONAR" : "REMOVER"} 583
-            </Button2> */}
-
-            <Button2
-              onClick={() => window.location.reload(true)}
-              style={{ backgroundColor: "red" }}
-            >
-              LIMPAR
-            </Button2>
-          </View>
-
-          <View>
-            {firstDate && lastDate && (
-              <Response>A data final será: {lastDate}</Response>
-            )}
-          </View>
-        </main>
-      </Content>
+        <Button onClick={calcDate} disabled={!firstDate}>
+          Calcular
+        </Button>
+      </Footer>
     </Container>
   );
 }
