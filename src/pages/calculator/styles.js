@@ -32,7 +32,7 @@ export const Footer = styled.div`
 `;
 
 export const Spacer = styled.span`
-  width: 5;
+  width: 5px;
   background-color: white;
 `;
 
