@@ -102,9 +102,9 @@ function Calculator() {
 
   return (
     <Container>
-      <Header>
-        <Button2 onClick={() => window.location.reload(true)}>X</Button2>
+      <Button2 onClick={() => window.location.reload(true)}>X</Button2>
 
+      <Header>
         <View>
           <Subtitle>Data inicial</Subtitle>
           <InputDate

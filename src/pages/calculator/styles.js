@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-
   margin: 3rem 15rem;
   border-radius: 20px;
   height: 85vh;
@@ -11,8 +10,10 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   display: flex;
+  position: relative;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 
   height: 130px;
   margin-bottom: 30px;
@@ -51,7 +52,6 @@ export const Response = styled.span`
 
 export const View = styled.div`
   justify-content: center;
-  margin-left: 25%;
   height: 130px;
 `;
 
@@ -135,9 +135,11 @@ export const Result = styled.div`
 `;
 
 export const Button2 = styled.button`
+  position: absolute;
+  z-index: 10;
+
   width: 3.2rem;
   height: 3.2rem;
-
   background-color: #e77d7d;
 
   :hover {
