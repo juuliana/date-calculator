@@ -51,7 +51,8 @@ export const Response = styled.span`
 `;
 
 export const View = styled.div`
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   height: 130px;
 `;
 
@@ -92,6 +93,17 @@ export const InputSquare = styled.input`
   margin: 0 2rem 0.5rem 2rem;
 
   padding: 0.6rem;
+
+  text-align: center;
+  font-size: 2rem;
+`;
+
+export const InputDays = styled.input`
+  width: 8rem;
+  height: 4rem;
+
+  margin: 0.5rem 0 5rem 0;
+  padding: 1.5rem;
 
   text-align: center;
   font-size: 2rem;

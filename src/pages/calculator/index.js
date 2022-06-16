@@ -9,6 +9,7 @@ import {
   Footer,
   Header,
   InputDate,
+  InputDays,
   InputSquare,
   Main,
   Response,
@@ -22,6 +23,8 @@ import {
 } from "./styles";
 
 function Calculator() {
+  const fiveYears = 1825;
+
   const [firstDate, setFirstDate] = useState(null);
   const [lastDate, setLastDate] = useState(null);
   const [bissexto, setBissexto] = useState(0);
@@ -29,8 +32,8 @@ function Calculator() {
   const [justifiedAbsence, setJustifiedAbsence] = useState(0);
   const [leaveHealth, setLeaveHealth] = useState(0);
   const [leaveHealthFamily, setLeaveHealthFamily] = useState(0);
+  const [days, setDays] = useState(fiveYears);
 
-  const fiveYears = 1825;
   const oneDayInMiliseconds = 60 * 60 * 1000 * 24;
 
   function calcDate() {
@@ -44,7 +47,7 @@ function Calculator() {
     const newDate = new Date(Date.parse(`${month} ${day} ${year} ${hour}`));
 
     const discount =
-      Number(fiveYears - 1) +
+      Number(days - 1) +
       Number(unjustifiedAbsence) +
       Number(justifiedAbsence) +
       Number(leaveHealth) +
@@ -110,6 +113,14 @@ function Calculator() {
           <InputDate
             type="date"
             onChange={(text) => setFirstDate(text.target.value)}
+          />
+        </View>
+        <View style={{ marginLeft: 10 }}>
+          <Subtitle>Dias</Subtitle>
+          <InputDays
+            placeholder="0"
+            defaultValue={fiveYears}
+            onChange={(text) => setDays(text.target.value)}
           />
         </View>
       </Header>
